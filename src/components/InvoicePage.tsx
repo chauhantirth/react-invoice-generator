@@ -5,7 +5,9 @@ import EditableInput from './EditableInput'
 import EditableSelect from './EditableSelect'
 import EditableTextarea from './EditableTextarea'
 import EditableCalendarInput from './EditableCalendarInput'
+import EditableDesc from './EditableDesc'
 import countryList from '../data/countryList'
+import itemList from '../data/itemList'
 import Document from './Document'
 import Page from './Page'
 import View from './View'
@@ -26,6 +28,10 @@ interface Props {
   data?: Invoice
   pdfMode?: boolean
 }
+export interface SelectOption {
+  value: string
+  label: string
+}
 
 const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   const [invoice, setInvoice] = useState<Invoice>(data ? { ...data } : { ...initialInvoice })
@@ -44,21 +50,29 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   }
 
   const handleChange = (name: keyof Invoice, value: string) => {
-    if (name !== 'productLines') {
+    if (name !== 'productLines' && name!=='companyCountry') {
       const newInvoice = { ...invoice }
       newInvoice[name] = value
-
       setInvoice(newInvoice)
     }
   }
 
-  const handleProductLineChange = (index: number, name: keyof ProductLine, value: string) => {
+  const handleSelectChange=(name:keyof Invoice, value:any)=>{
+    if (name === 'companyCountry') {
+      const newInvoice = { ...invoice }
+      newInvoice.companyCountry = value
+      setInvoice(newInvoice)
+    }
+  }
+
+  const handleProductLineChange = (index: number, name: keyof ProductLine, value: any) => {
     const productLines = invoice.productLines.map((productLine, i) => {
       if (i === index) {
         const newProductLine = { ...productLine }
 
         if (name === 'description') {
           newProductLine[name] = value
+          newProductLine.rate=value.price
         } else {
           if (
             value[value.length - 1] === '.' ||
@@ -67,7 +81,6 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
             newProductLine[name] = value
           } else {
             const n = parseFloat(value)
-
             newProductLine[name] = (n ? n : 0).toString()
           }
         }
@@ -158,8 +171,9 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
             <EditableSelect
               options={countryList}
               value={invoice.companyCountry}
-              onChange={(value) => handleChange('companyCountry', value)}
+              handleChange={(value) => handleSelectChange('companyCountry', value)}
               pdfMode={pdfMode}
+              toShow={"text"}
             />
           </View>
           <View className="w-50" pdfMode={pdfMode}>
@@ -199,12 +213,12 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               onChange={(value) => handleChange('clientAddress2', value)}
               pdfMode={pdfMode}
             />
-            <EditableSelect
+            {/* <EditableSelect
               options={countryList}
               value={invoice.clientCountry}
               onChange={(value) => handleChange('clientCountry', value)}
               pdfMode={pdfMode}
-            />
+            /> */}
           </View>
           <View className="w-45" pdfMode={pdfMode}>
             <View className="flex mb-5" pdfMode={pdfMode}>
@@ -275,6 +289,22 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
         </View>
 
         <View className="mt-30 bg-dark flex" pdfMode={pdfMode}>
+          <View className="w-18 p-4-8" pdfMode={pdfMode}>
+            <EditableInput
+              className="white bold"
+              value={invoice.invoiceSrNo}
+              onChange={(value) => handleChange('invoiceSrNo', value)}
+              pdfMode={pdfMode}
+            />
+          </View>
+          <View className="w-18 p-4-8" pdfMode={pdfMode}>
+            <EditableInput
+              className="white bold"
+              value={invoice.invoiceOrderNo}
+              onChange={(value) => handleChange('invoiceOrderNo', value)}
+              pdfMode={pdfMode}
+            />
+          </View>
           <View className="w-48 p-4-8" pdfMode={pdfMode}>
             <EditableInput
               className="white bold"
@@ -310,18 +340,41 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
         </View>
 
         {invoice.productLines.map((productLine, i) => {
-          return pdfMode && productLine.description === '' ? (
+          return pdfMode && !productLine.description? (
             <Text key={i}></Text>
           ) : (
             <View key={i} className="row flex" pdfMode={pdfMode}>
+             <View className="w-18 p-2" pdfMode={pdfMode}>
+                <Text className="dark left" pdfMode={pdfMode}>
+                  {`${i+1}`}
+                </Text>
+              </View>
+              <View className="w-18 p-2" pdfMode={pdfMode}>
+                <EditableInput
+                    className="dark left"
+                    value={productLine.orderNo}
+                    onChange={(value) => handleProductLineChange(i, 'orderNo', value)}
+                    pdfMode={pdfMode}
+                />
+              </View>
               <View className="w-48 p-4-8 pb-10" pdfMode={pdfMode}>
-                <EditableTextarea
+                {/* <EditableTextarea
                   className="dark"
                   rows={2}
                   placeholder="Enter item name/description"
                   value={productLine.description}
                   onChange={(value) => handleProductLineChange(i, 'description', value)}
                   pdfMode={pdfMode}
+                /> */}
+                <EditableDesc
+                  options={itemList}
+                  className="dark"
+                  rows={2}
+                  placeholder="Enter item name/description"
+                  value={productLine.description}
+                  onChange={(value) => handleProductLineChange(i, 'description', value)}
+                  pdfMode={pdfMode}
+                  toShow={"text"}
                 />
               </View>
               <View className="w-17 p-4-8 pb-10" pdfMode={pdfMode}>

@@ -1,9 +1,10 @@
 import { CSSProperties } from 'react'
 
 export interface ProductLine {
-  description: string
+  description: object
   quantity: string
   rate: string
+  orderNo:string
 }
 
 export interface Invoice {
@@ -12,7 +13,7 @@ export interface Invoice {
   name: string
   companyAddress: string
   companyAddress2: string
-  companyCountry: string
+  companyCountry: object
 
   billTo: string
   clientName: string
@@ -26,7 +27,8 @@ export interface Invoice {
   invoiceDate: string
   invoiceDueDateLabel: string
   invoiceDueDate: string
-
+  invoiceSrNo:string
+  invoiceOrderNo:string
   productLineDescription: string
   productLineQuantity: string
   productLineQuantityRate: string

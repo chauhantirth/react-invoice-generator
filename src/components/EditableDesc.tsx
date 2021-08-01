@@ -1,11 +1,13 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState,useEffect } from 'react'
 import { Text } from '@react-pdf/renderer'
 import Select from 'react-select'
 import compose from '../styles/compose'
+import TextareaAutosize from 'react-textarea-autosize'
 
 export interface SelectOption {
   value: string
   label: string
+  price: string
 }
 type MyOption = {label: string, value: number}
 interface Props {
@@ -17,19 +19,25 @@ interface Props {
   handleChange?:(value: object)=>void
   pdfMode?: boolean
   toShow:string
+  rows?: number
 }
 
-const EditableSelect: FC<Props> = ({
+const EditableDesc: FC<Props> = ({
   className,
   options,
   placeholder,
   value,
   pdfMode,
   toShow,
-  handleChange
+  rows,
+  onChange
 }) => {
   const [isEditing, setIsEditing] = useState<boolean>(false)
   const [showString,setToShow]= useState<string>(toShow)
+
+  useEffect(()=>{
+    console.log(pdfMode);
+  },[pdfMode])
 
   return (
     <>
@@ -41,8 +49,8 @@ const EditableSelect: FC<Props> = ({
             <Select
               className={'select ' + (className ? className : '')}
               value={value}
-              onChange={handleChange ? (opt)=>{
-                handleChange(opt?opt:{})
+              onChange={onChange ? (opt)=>{
+                onChange(opt?opt:{})
               } : undefined}
               //onChange={(selected?: MyOption | MyOption[] | null)=>setMyVal(selected)}
               onBlur={() => setIsEditing(false)}
@@ -58,6 +66,12 @@ const EditableSelect: FC<Props> = ({
               placeholder={placeholder || ''}
               onFocus={() => setIsEditing(true)}
             />
+            // <TextareaAutosize
+            //     minRows={rows || 1}
+            //     className={'input ' + (className ? className : '')}
+            //     placeholder={placeholder || ''}
+            //     value={value ? value.label :}
+            // />
           )}
         </>
       )}
@@ -65,4 +79,4 @@ const EditableSelect: FC<Props> = ({
   )
 }
 
-export default EditableSelect
+export default EditableDesc
