@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import { Text } from '@react-pdf/renderer'
-import Select from 'react-select'
+import CreatableSelect  from 'react-select/creatable'
 import compose from '../styles/compose'
 
 export interface SelectOption {
@@ -38,7 +38,8 @@ const EditableSelect: FC<Props> = ({
       ) : (
         <>
           {isEditing ? (
-            <Select
+            <CreatableSelect
+              isClearable={true}
               className={'select ' + (className ? className : '')}
               value={value}
               onChange={handleChange ? (opt)=>{
@@ -47,6 +48,7 @@ const EditableSelect: FC<Props> = ({
               //onChange={(selected?: MyOption | MyOption[] | null)=>setMyVal(selected)}
               onBlur={() => setIsEditing(false)}
               autoFocus={true}
+              onInputChange={(val,actionMeta)=>console.log(val)}
               options={options}
             />
           ) : (

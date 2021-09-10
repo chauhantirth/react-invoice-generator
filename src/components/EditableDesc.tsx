@@ -1,6 +1,6 @@
 import React, { FC, useState,useEffect } from 'react'
 import { Text } from '@react-pdf/renderer'
-import Select from 'react-select'
+import CreatableSelect from 'react-select/creatable'
 import compose from '../styles/compose'
 import TextareaAutosize from 'react-textarea-autosize'
 
@@ -46,7 +46,8 @@ const EditableDesc: FC<Props> = ({
       ) : (
         <>
           {isEditing ? (
-            <Select
+            <CreatableSelect
+              isClearable={true}
               className={'select ' + (className ? className : '')}
               value={value}
               onChange={onChange ? (opt)=>{
@@ -56,6 +57,9 @@ const EditableDesc: FC<Props> = ({
               onBlur={() => setIsEditing(false)}
               autoFocus={true}
               options={options}
+              onInputChange={(newVal,actionMeta)=>{
+                console.log(newVal)
+              }}
             />
           ) : (
             <input

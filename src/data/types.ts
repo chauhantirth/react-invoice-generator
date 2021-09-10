@@ -5,6 +5,7 @@ export interface ProductLine {
   quantity: string
   rate: string
   orderNo:string
+  hsn:string
 }
 
 export interface Invoice {
@@ -13,6 +14,7 @@ export interface Invoice {
   name: string
   companyAddress: string
   companyAddress2: string
+  companyAddress3:string
   companyCountry: object
 
   billTo: string
@@ -20,9 +22,11 @@ export interface Invoice {
   clientAddress: string
   clientAddress2: string
   clientCountry: string
+  clientGSTIN:string
 
   invoiceTitleLabel: string
   invoiceTitle: string
+  invoiceDelNote:string
   invoiceDateLabel: string
   invoiceDate: string
   invoiceDueDateLabel: string
@@ -30,6 +34,7 @@ export interface Invoice {
   invoiceSrNo:string
   invoiceOrderNo:string
   productLineDescription: string
+  hsnLabel:string
   productLineQuantity: string
   productLineQuantityRate: string
   productLineQuantityAmount: string
@@ -37,13 +42,16 @@ export interface Invoice {
   productLines: ProductLine[]
 
   subTotalLabel: string
-  taxLabel: string
 
-  totalLabel: string
+  taxLabel1: string
+  taxLabel2:string
+  totalLabel:string
   currency: string
 
   notesLabel: string
+  GSTIN:string
   notes: string
+  rupeesTag:string
   termLabel: string
   term: string
 }
