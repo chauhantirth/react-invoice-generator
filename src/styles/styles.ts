@@ -45,6 +45,10 @@ const styles: CSSClasses = {
     width: '50%',
   },
 
+  'w-70':{
+    width:'70%',
+  },
+
   'w-55': {
     width: '55%',
   },
@@ -69,12 +73,24 @@ const styles: CSSClasses = {
     width:'85%',
   },
 
+  'w-65':{
+    width:'49%',
+  },
+
+  'w-10':{
+    width: '5%',
+  },
+
   'w-17': {
-    width: '17%',
+    width: '12%',
   },
 
   'w-18': {
-    width: '18%',
+    width: '12%',
+  },
+
+  'w-11':{
+    width :'11%'
   },
 
   'w-20': {
@@ -86,7 +102,21 @@ const styles: CSSClasses = {
   },
 
   row: {
-    borderBottom: `1px solid ${colorGray}`,
+    position: 'relative',
+    borderBottom: `1px solid lightgrey`,
+  },
+
+  darkRow:{
+    position: 'relative',
+    borderBottom: '2px solid #808080',
+  },
+
+  'br-t':{
+    borderTop:`2px solid #808080`
+  },
+
+  'br-r':{
+    borderRight:`1px solid grey`
   },
 
   'mt-40': {
@@ -141,8 +171,28 @@ const styles: CSSClasses = {
     textAlign: 'right',
   },
 
+  left:{
+    textAlign:'left',
+  },
+
   bold: {
     fontWeight: 'bold',
+  },
+
+  center:{
+    textAlign:'center',
+  },
+
+  flexCenter:{
+    justifyContent:'center',
+  },
+
+  flexClass:{
+    display:'flex !important',
+    width:'auto !important',
+  },
+  'fs-8':{
+    fontSize: '8px',
   },
 
   'fs-20': {
@@ -153,18 +203,81 @@ const styles: CSSClasses = {
     fontSize: '45px',
   },
 
+  'fs-30':{
+    fontSize:'30px',
+  },
+
+  'pt-5':{
+    paddingTop:'5px',
+  },
+  
+  'pb-5':{
+    paddingBottom: '5px',
+  },
+
+  alignRight:{
+    textAlign:'left',
+  },
+
+  bottom:{
+    bottom: '50px',
+    position:'absolute',
+    left: '17px'
+  },
+
+  bottomBox:{
+    bottom:'240px',
+    right:'17px',
+    position:'absolute',
+  },
+
+  signBox:{
+    border:'1px solid #808080',
+    margin: '0 5px 5px 0',
+    height: '80px',
+    width: '100%',
+    display:'block',
+  },
+
+  bBottom:{
+    borderBottom: '10px solid #808080',
+  },
+
   page: {
     fontFamily: 'Nunito',
-    fontSize: '10px',
-    color: '#555',
-    padding: '20px',
+    fontSize: '9px',
+    fontWeight:400,
+    color: 'black',
+    padding: '17px',
+    border: '1px solid black'
   },
   small:{
     fontSize:'7px',
   },
   span: {
-    padding: '0 5px 0 0',
+    padding: '3px 5px 3px 0',
   },
+  select: {
+    fontSize: '9px',
+    color: 'black',
+    background: 'transparent',
+    borderRadius: '2px',
+    outline: '0'
+  },
+  textarea: {
+    fontSize: '9px',
+    color: 'black',
+    background: 'transparent',
+    borderRadius: '2px',
+    outline: '0'
+  },
+  input:{
+    fontSize: '9px',
+    color: 'black',
+    background: 'transparent',
+    borderRadius: '2px',
+    outline: '0'
+  }
 }
 
 export default styles
