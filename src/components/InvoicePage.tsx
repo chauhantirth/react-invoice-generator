@@ -16,7 +16,6 @@ import Text from './Text'
 import { Font } from '@react-pdf/renderer'
 import Download from './DownloadPDF'
 import format from 'date-fns/format'
-import env from 'react-dotenv'
 
 Font.register({
   family: 'Nunito',
