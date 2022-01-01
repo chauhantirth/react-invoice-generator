@@ -111,6 +111,18 @@ const styles: CSSClasses = {
     borderBottom: '2px solid #808080',
   },
 
+  invoiceWrapper:{
+    position:'relative',
+    background:'#fff',
+    padding:'15px',
+    boxShadow:'0 0 17px 0 rgba(16, 40, 73, 0.09)'
+  },
+
+  app:{
+    margin: '10px auto 50px auto',
+    width: '700px',
+  },
+
   'br-t':{
     borderTop:`2px solid #808080`
   },
@@ -121,10 +133,6 @@ const styles: CSSClasses = {
 
   'mt-40': {
     marginTop: '40px',
-  },
-
-  'mt-30': {
-    marginTop: '30px',
   },
 
   'mt-20': {
@@ -216,7 +224,7 @@ const styles: CSSClasses = {
   },
 
   alignRight:{
-    textAlign:'left',
+    textAlign:'right',
   },
 
   bottom:{
@@ -248,8 +256,8 @@ const styles: CSSClasses = {
     fontSize: '9px',
     fontWeight:400,
     color: 'black',
-    padding: '17px',
-    border: '1px solid black'
+    // padding: '17px',
+    // border: '1px solid black'
   },
   small:{
     fontSize:'7px',

@@ -1,5 +1,6 @@
 import React from 'react'
 import InvoicePage from './components/InvoicePage'
+require('dotenv').config()
 
 function App() {
   return (

@@ -16,6 +16,7 @@ import Text from './Text'
 import { Font } from '@react-pdf/renderer'
 import Download from './DownloadPDF'
 import format from 'date-fns/format'
+import env from 'react-dotenv'
 
 Font.register({
   family: 'Nunito',
@@ -167,31 +168,31 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
 
   return (
     <Document pdfMode={pdfMode}>
-      <Page className="invoice-wrapper mt-30" pdfMode={pdfMode}>
+      <Page className="invoiceWrapper mt-30" pdfMode={pdfMode}>
         {!pdfMode && <Download data={invoice} />}
-        <View className="flex bBottom pb-10" pdfMode={pdfMode}>
+        <View className="pb-10" pdfMode={pdfMode}>
           <View className="w-100" pdfMode={pdfMode}>
-            <View className="center flex" pdfMode={pdfMode}>
+            <View className="center" pdfMode={pdfMode}>
               <Text className="fs-8 alignRight" pdfMode={pdfMode}>
                 {`TAX INVOICE`}
               </Text>
             </View>
-            <View className="center flex" pdfMode={pdfMode}>
+            <View className="center" pdfMode={pdfMode}>
               <Text className="fs-8 center" pdfMode={pdfMode}>
                 {`Shree Ganeshay Namah`}
               </Text>
             </View> 
-            <View className="center flex" pdfMode={pdfMode}>
+            <View className="center" pdfMode={pdfMode}>
               <Text className="fs-20 bold center" pdfMode={pdfMode}>
                 {invoice.companyName}
               </Text>
             </View>
-            <View className="center flex" pdfMode={pdfMode}>
+            <View className="center" pdfMode={pdfMode}>
               <Text pdfMode={pdfMode} className={"input"}>
                 {`${invoice.companyAddress} ${invoice.companyAddress2} ${invoice.companyAddress3}`}
               </Text>
             </View>
-            <View className="center flex" pdfMode={pdfMode}>
+            <View className="center" pdfMode={pdfMode}>
               <Text pdfMode={pdfMode} className={"input"}>
                 {`MOBILE:${process.env.REACT_APP_MOBILE} EMAIL:${process.env.REACT_APP_EMAIL}`}
               </Text>
@@ -208,7 +209,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               onChange={(value) => handleChange('companyAddress3', value)}
               pdfMode={pdfMode}
             /> */}
-            <View className="center flex" pdfMode={pdfMode}>
+            <View className="center" pdfMode={pdfMode}>
               <Text className="input bold" pdfMode={pdfMode}>
                 {`${invoice.notesLabel} ${invoice.GSTIN}`}
                 </Text>
