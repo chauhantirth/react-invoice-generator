@@ -256,8 +256,6 @@ const styles: CSSClasses = {
     fontSize: '9px',
     fontWeight:400,
     color: 'black',
-    // padding: '17px',
-    // border: '1px solid black'
   },
   small:{
     fontSize:'7px',
