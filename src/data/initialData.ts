@@ -10,7 +10,7 @@ export const initialProductLine: ProductLine = {
 
 export const initialInvoice: Invoice = {
   title: 'INVOICE',
-  companyName: 'JAY AMBE ENGINEERING WORKSHOP',
+  companyName: 'JAY AMBE ENGINEERING WORKS',
   name: '',
   companyAddress: 'PLOT NO 490',
   companyAddress2: 'NEW COLONY, OLD G.I.D.C.',
