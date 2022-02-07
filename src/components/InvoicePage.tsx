@@ -3,12 +3,14 @@ import { Invoice, ProductLine } from '../data/types'
 import {ToWords} from 'to-words';
 import { initialInvoice, initialProductLine } from '../data/initialData'
 import EditableInput from './EditableInput'
-// import EditableSelect from './EditableSelect'
+import EditableSelect from './EditableSelect'
 // import EditableTextarea from './EditableTextarea'
 import EditableCalendarInput from './EditableCalendarInput'
+import EditableAddress from './EditableAddress'
 import EditableDesc from './EditableDesc'
 // import countryList from '../data/countryList'
 import itemList from '../data/itemList'
+import addressList from '../data/addressList'
 import Document from './Document'
 import Page from './Page'
 import View from './View'
@@ -56,8 +58,9 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   }
 
   const handleChange = (name: keyof Invoice, value: string) => {
-    if (name !== 'productLines' && name!=='companyCountry') {
+    if (name !== 'productLines' && name!=='companyCountry' && name!=='addressDetail') {
       const newInvoice = { ...invoice }
+      console.log(value)
       newInvoice[name] = value
       setInvoice(newInvoice)
     }
@@ -67,6 +70,17 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
     if (name === 'companyCountry') {
       const newInvoice = { ...invoice }
       newInvoice.companyCountry = value
+      setInvoice(newInvoice)
+    }
+  }
+
+  const handleAdressDetails = (name:keyof Invoice,value:any)=>{
+    if (name === 'addressDetail') {
+      const newInvoice = { ...invoice }
+      newInvoice.addressDetail = value
+      newInvoice.clientAddress=value.clientAddress
+      newInvoice.clientAddress2=value.clientAddress2
+      newInvoice.clientGSTIN=value.clientGSTIN
       setInvoice(newInvoice)
     }
   }
@@ -107,9 +121,10 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   }
 
   const handleAdd = () => {
-    const productLines = [...invoice.productLines, { ...initialProductLine }]
-
-    setInvoice({ ...invoice, productLines })
+    if(invoice.productLines.length!==10){
+      const productLines = [...invoice.productLines, { ...initialProductLine }]
+      setInvoice({ ...invoice, productLines })
+    }
   }
 
   const calculateAmount = (quantity: string, rate: string) => {
@@ -137,7 +152,6 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
 
   useEffect(() => {
     const match = invoice.taxLabel1.match(/@(\d+)/)
-    console.log(match)
     const taxRate1 = match ? parseFloat(match[1]) : 0
     const saleTax1 = subTotal ? (subTotal * taxRate1) / 100 : 0
     setSaleTax1(saleTax1)
@@ -167,16 +181,26 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
 
   return (
     <Document pdfMode={pdfMode}>
-      <Page className="invoiceWrapper mt-30" pdfMode={pdfMode}>
+      <Page className="invoiceWrapper" pdfMode={pdfMode}>
         {!pdfMode && <Download data={invoice} />}
+        <View className='ml-20' pdfMode={pdfMode}>
         <View className="pb-10" pdfMode={pdfMode}>
           <View className="w-100" pdfMode={pdfMode}>
-            <View className="center" pdfMode={pdfMode}>
+            <View className="center rightBox" pdfMode={pdfMode}>
               <Text className="fs-8 alignRight" pdfMode={pdfMode}>
-                {`TAX INVOICE`}
+                {`Original`}
+              </Text>
+              <Text className="fs-8 alignRight" pdfMode={pdfMode}>
+                {`Duplicate`}
+              </Text>
+              <Text className="fs-8 alignRight" pdfMode={pdfMode}>
+                {`Triplicate`}
               </Text>
             </View>
             <View className="center" pdfMode={pdfMode}>
+              <Text className="fs-8 center" pdfMode={pdfMode}>
+                {`TAX INVOICE`}
+              </Text>
               <Text className="fs-8 center" pdfMode={pdfMode}>
                 {`Shree Ganeshay Namah`}
               </Text>
@@ -193,7 +217,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
             </View>
             <View className="center" pdfMode={pdfMode}>
               <Text pdfMode={pdfMode} className={"input"}>
-                {`MOBILE:${process.env.REACT_APP_MOBILE} EMAIL:${process.env.REACT_APP_EMAIL}`}
+                {`MOBILE:${process.env.REACT_APP_MOBILE}/${process.env.REACT_APP_MOB2} ,  EMAIL:${process.env.REACT_APP_EMAIL}`}
               </Text>
             </View>
             {/* <EditableInput
@@ -225,19 +249,23 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
           </View> */}
         </View>
         <View className="flex mt-5" pdfMode={pdfMode}>
-          <View className="w-55" pdfMode={pdfMode}>
+          <View className="w-60" pdfMode={pdfMode}>
             <EditableInput
               className="input bold mb-2"
               value={invoice.billTo}
               onChange={(value) => handleChange('billTo', value)}
               pdfMode={pdfMode}
             />
-            <EditableInput
+            <EditableAddress
+              options={addressList}
+              // className="dark"
+              // rows={2}
               placeholder="Your Client's Name:"
-              value={invoice.clientName}
-              onChange={(value) => handleChange('clientName', value)}
+              value={invoice.addressDetail}
+              onChange={(value) => handleAdressDetails("addressDetail",value)}
               pdfMode={pdfMode}
-            />
+              toShow={"text"}
+             />
             <EditableInput
               placeholder="Client's Address:"
               value={invoice.clientAddress}
@@ -271,7 +299,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               pdfMode={pdfMode}
             /> */}
           </View>
-          <View className="w-45" pdfMode={pdfMode}>
+          <View className="w-40" pdfMode={pdfMode}>
             <View className="flex mb-2" pdfMode={pdfMode}>
               <View className="w-40" pdfMode={pdfMode}>
                 <EditableInput
@@ -483,7 +511,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
           )
         })}
         <View className={`w-100 bg-white bottomBox pt-5 `} pdfMode={pdfMode}> 
-          <View className="mt-30 bg-white flex darkRow pb-5 br-t" pdfMode={pdfMode}>
+          <View className="bg-white flex darkRow pb-5 br-t" pdfMode={pdfMode}>
               <View className="w-65" pdfMode={pdfMode}>
                 <Text className="input bold" pdfMode={pdfMode}>
                   {`SUB TOTAL`}
@@ -520,8 +548,8 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                 </Text>
               </View>
             </View>
-          <View className="flex w-100" pdfMode={pdfMode}>
-            <View className="w-60 mt-20" pdfMode={pdfMode}>
+          <View className="flex w-100 viewMiddle" pdfMode={pdfMode}>
+            <View className="w-70 mt-20" pdfMode={pdfMode}>
               {!pdfMode && (
                 <button className="link" onClick={handleAdd}>
                   <span className="icon icon-add bg-green mr-10"></span>
@@ -529,7 +557,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                 </button>
               )}
             </View>
-            <View className="w-40 mt-10" pdfMode={pdfMode}>
+            <View className="w-30 mt-20" pdfMode={pdfMode}>
               <View className="flex row" pdfMode={pdfMode}>
                 <View className="w-50 p-2" pdfMode={pdfMode}>
                   <Text className="input" pdfMode={pdfMode}>
@@ -667,14 +695,22 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               <Text className="w-100" pdfMode={pdfMode}>
                   {`4.Subject to NAVSARI Juridiction only.`}
               </Text>
-            </View>
-            <View className="mt-5 w-40" pdfMode={pdfMode}>
-              <View className={`signBox w-100`}  pdfMode={pdfMode}/>
-              <Text  className="w-100 center" pdfMode={pdfMode}>
-                {`Authorised signature for JayAmbe Engineering`}
+              <Text  className="w-100 fs-12 mt-5" pdfMode={pdfMode}>
+                {`Reciever's signature`}
               </Text>
             </View>
+            <View className="mt-40 w-40" pdfMode={pdfMode}>
+              <View className={`signBox w-100`}  pdfMode={pdfMode}>
+              <Text  className="w-100 center flexStart" pdfMode={pdfMode}>
+                {`For JayAmbe Engineering Works`}
+              </Text>
+              <Text  className="w-100 center flexEnd" pdfMode={pdfMode}>
+                {`Authorised signatory`}
+              </Text>
+              </View>
+            </View>
           </View>
+        </View>
         </View>
       </Page>
     </Document>

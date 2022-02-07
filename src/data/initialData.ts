@@ -1,11 +1,11 @@
 import { ProductLine, Invoice } from './types'
 
 export const initialProductLine: ProductLine = {
-  description: {value:"Item1", label:"Item 1", price:'12.5'},
+  description: {value:"Item1", label:"Item 1", price:'0.00'},
   quantity: '1',
   rate: '0.00',
-  orderNo:'0',
-  hsn:'',
+  orderNo:'',
+  hsn:'8448',
 }
 
 export const initialInvoice: Invoice = {
@@ -13,15 +13,22 @@ export const initialInvoice: Invoice = {
   companyName: 'JAY AMBE ENGINEERING WORKS',
   name: '',
   companyAddress: 'PLOT NO 490',
-  companyAddress2: 'NEW COLONY, OLD G.I.D.C.',
+  companyAddress2: 'NEAR COLONY, OLD G.I.D.C.',
   companyAddress3:'KABILPORE, NAVSARI-396424',
   companyCountry: {value:'India',label:'India'},
   billTo: 'BUYER:',
-  clientName: '',
-  clientAddress: '',
-  clientAddress2: '',
-  clientCountry: 'United States',
-  clientGSTIN:'',
+  addressDetail: {
+    value:"SUNSHINE ENGINEERING",
+    label:"SUNSHINE ENGINEERING",
+    clientAddress: "Shed no:6122, Road no-61 ",
+    clientAddress2: "GIDC,Sachin",
+    clientCountry: "Surat",
+    clientGSTIN:"24AOFPK3573B12B",
+  },
+  clientAddress: "Shed no:6122, Road no-61 ",
+  clientAddress2: "GIDC,Sachin",
+  clientCountry: "Surat",
+  clientGSTIN:"24AOFPK3573B12B",
   invoiceTitleLabel: 'INVOICE NO:',
   invoiceTitle: '',
   invoiceDelNote:"",
@@ -38,10 +45,10 @@ export const initialInvoice: Invoice = {
   productLineQuantityAmount: 'AMOUNT',
   productLines: [
     {
-      description: {value:"Item1", label:"Item 1", price:'12.5'},
+      description: {value:"Item1", label:"Item 1", price:'0.00'},
       quantity: '2',
-      rate: '100.00',
-      orderNo:'B667',
+      rate: '0.00',
+      orderNo:'',
       hsn:'8448',
     },
     { ...initialProductLine },

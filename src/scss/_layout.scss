@@ -84,6 +84,10 @@
   border-bottom: 10px solid #808080;
 }
 
+.bottom{
+  margin-top: 30px;
+}
+
 .row {
   position: relative;
   border: 1px solid lightgrey;
@@ -96,7 +100,7 @@
   border-bottom: 2px solid #808080;
 }
 .signBox{
-  border:1px solid #808080;
+  border:none;
   margin-left: 5px;
   height: 40px;
   width: 100%;
@@ -118,6 +122,13 @@
 
 .br-r{
   border-right: 1px solid grey;
+}
+
+.rightBox{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right:0;
 }
 
 .row__remove {

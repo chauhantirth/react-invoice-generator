@@ -34,7 +34,13 @@ const styles: CSSClasses = {
   },
 
   'ml-30': {
+    marginLeft:'30px',
     flex: 1,
+  },
+
+  'ml-20':{
+    marginLeft:'20px',
+    flex:1,
   },
 
   'w-100': {
@@ -118,6 +124,13 @@ const styles: CSSClasses = {
     boxShadow:'0 0 17px 0 rgba(16, 40, 73, 0.09)'
   },
 
+  rightBox:{
+    display:'flex',
+    flexDirection:'column',
+    position:'absolute',
+    right:0,
+  },
+
   app:{
     margin: '10px auto 50px auto',
     width: '700px',
@@ -129,6 +142,10 @@ const styles: CSSClasses = {
 
   'br-r':{
     borderRight:`1px solid grey`
+  },
+
+  'mt-45': {
+    marginTop: '45px',
   },
 
   'mt-40': {
@@ -157,6 +174,10 @@ const styles: CSSClasses = {
 
   'mb-5': {
     marginBottom: '5px',
+  },
+
+  'mb-10':{
+    marginBottom: '30px',
   },
 
   'p-4-8': {
@@ -223,28 +244,47 @@ const styles: CSSClasses = {
     paddingBottom: '5px',
   },
 
+  'fs-12':{
+    fontSize:'10px',
+  },
+
   alignRight:{
     textAlign:'right',
+    padding:'1px 0px'
   },
 
   bottom:{
     bottom: '50px',
     position:'absolute',
-    left: '17px'
   },
 
   bottomBox:{
     bottom:'240px',
-    right:'17px',
+    // right:'17px',
     position:'absolute',
   },
 
+  viewMiddle:{
+    position:'absolute',
+    top:'15px',
+  },
+
   signBox:{
-    border:'1px solid #808080',
-    margin: '0 5px 5px 0',
-    height: '80px',
+    border:'none',
+    margin: '5px 5px 5px 0',
+    height: '60px',
     width: '100%',
-    display:'block',
+    display:'flex',
+    flexDirection:'column',
+    justifyContent:'space-between',
+  },
+
+  flexStart:{
+    alignItems:'flex-start',
+  },
+
+  flexEnd:{
+    alignItems:'flex-end',
   },
 
   bBottom:{

@@ -16,14 +16,12 @@ export interface Invoice {
   companyAddress2: string
   companyAddress3:string
   companyCountry: object
-
+  addressDetail:object
   billTo: string
-  clientName: string
-  clientAddress: string
-  clientAddress2: string
-  clientCountry: string
-  clientGSTIN:string
-
+  clientAddress: string,
+  clientAddress2: string,
+  clientCountry: string,
+  clientGSTIN:string,
   invoiceTitleLabel: string
   invoiceTitle: string
   invoiceDelNote:string
