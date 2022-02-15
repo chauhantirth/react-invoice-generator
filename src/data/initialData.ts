@@ -46,7 +46,7 @@ export const initialInvoice: Invoice = {
   productLines: [
     {
       description: {value:"Item1", label:"Item 1", price:'0.00'},
-      quantity: '2',
+      quantity: '1',
       rate: '0.00',
       orderNo:'',
       hsn:'8448',

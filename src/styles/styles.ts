@@ -120,7 +120,7 @@ const styles: CSSClasses = {
   invoiceWrapper:{
     position:'relative',
     background:'#fff',
-    padding:'15px',
+    padding:'10px 10px 10px 15px',
     boxShadow:'0 0 17px 0 rgba(16, 40, 73, 0.09)'
   },
 
@@ -301,7 +301,7 @@ const styles: CSSClasses = {
     fontSize:'7px',
   },
   span: {
-    padding: '3px 5px 3px 0',
+    padding: '3px 0px',
   },
   select: {
     fontSize: '9px',

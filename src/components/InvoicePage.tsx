@@ -46,7 +46,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   const [ruppes,setRuppes] = useState<string>()
   const toWords = new ToWords();
 
-  const dateFormat = 'MMM dd, yyyy'
+  const dateFormat = 'dd/mm/yyyy'
   const invoiceDate = invoice.invoiceDate !== '' ? new Date(invoice.invoiceDate) : new Date()
   const invoiceDueDate =
     invoice.invoiceDueDate !== ''
@@ -93,7 +93,11 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
         if (name === 'description') {
           newProductLine[name] = value
           newProductLine.rate=value.price
-        } else {
+        } 
+        else if (name=== 'orderNo'){
+          newProductLine[name]=value
+        }
+        else {
           if (
             value[value.length - 1] === '.' ||
             (value[value.length - 1] === '0' && value.includes('.'))
@@ -104,7 +108,6 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
             newProductLine[name] = (n ? n : 0).toString()
           }
         }
-
         return newProductLine
       }
 
@@ -183,7 +186,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
     <Document pdfMode={pdfMode}>
       <Page className="invoiceWrapper" pdfMode={pdfMode}>
         {!pdfMode && <Download data={invoice} />}
-        <View className='ml-20' pdfMode={pdfMode}>
+        <View className='ml-30' pdfMode={pdfMode}>
         <View className="pb-10" pdfMode={pdfMode}>
           <View className="w-100" pdfMode={pdfMode}>
             <View className="center rightBox" pdfMode={pdfMode}>
@@ -249,7 +252,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
           </View> */}
         </View>
         <View className="flex mt-5" pdfMode={pdfMode}>
-          <View className="w-60" pdfMode={pdfMode}>
+          <View className="w-70" pdfMode={pdfMode}>
             <EditableInput
               className="input bold mb-2"
               value={invoice.billTo}
@@ -279,7 +282,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               pdfMode={pdfMode}
             />
             <View className="flex mb-2" pdfMode={pdfMode}>
-              <View className="w-20" pdfMode={pdfMode}>
+              <View className="w-17" pdfMode={pdfMode}>
                 <Text className="input bold" pdfMode={pdfMode}>
                   {"GST No."}
                 </Text>
@@ -299,9 +302,9 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               pdfMode={pdfMode}
             /> */}
           </View>
-          <View className="w-40" pdfMode={pdfMode}>
+          <View className="w-30" pdfMode={pdfMode}>
             <View className="flex mb-2" pdfMode={pdfMode}>
-              <View className="w-40" pdfMode={pdfMode}>
+              <View className="w-60" pdfMode={pdfMode}>
                 <EditableInput
                   className="bold"
                   value={invoice.invoiceTitleLabel}
@@ -309,7 +312,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                   pdfMode={pdfMode}
                 />
               </View>
-              <View className="w-60" pdfMode={pdfMode}>
+              <View className="w-40" pdfMode={pdfMode}>
                 <EditableInput
                   placeholder="123"
                   value={invoice.invoiceTitle}
@@ -319,12 +322,12 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               </View>
             </View>
             <View className="flex mb-2" pdfMode={pdfMode}>
-              <View className="w-40" pdfMode={pdfMode}>
+              <View className="w-60" pdfMode={pdfMode}>
                 <Text className="input bold" pdfMode={pdfMode}>
                   {"DELIVERY NOTE"}
                 </Text>
               </View>
-              <View className="w-60" pdfMode={pdfMode}>
+              <View className="w-40" pdfMode={pdfMode}>
                 <EditableInput
                   value={invoice.invoiceDelNote}
                   onChange={(value) => handleChange('invoiceDelNote', value)}
@@ -333,7 +336,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               </View>
             </View>
             <View className="flex mb-2" pdfMode={pdfMode}>
-              <View className="w-40" pdfMode={pdfMode}>
+              <View className="w-60" pdfMode={pdfMode}>
                 <EditableInput
                   className="bold"
                   value={invoice.invoiceDateLabel}
@@ -341,7 +344,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                   pdfMode={pdfMode}
                 />
               </View>
-              <View className="w-60" pdfMode={pdfMode}>
+              <View className="w-40" pdfMode={pdfMode}>
                 <EditableCalendarInput
                   value={format(invoiceDate, dateFormat)}
                   selected={invoiceDate}
@@ -357,12 +360,12 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
             </View>
            
             <View className="flex mb-2" pdfMode={pdfMode}>
-                <View className="w-40" pdfMode={pdfMode}>
+                <View className="w-60" pdfMode={pdfMode}>
                   <Text className="input bold" pdfMode={pdfMode}>
                     {"PLACE OF SUPPLY"}
                   </Text>
                 </View>
-                <View className="w-60" pdfMode={pdfMode}>
+                <View className="w-40" pdfMode={pdfMode}>
                   <Text className="input" pdfMode={pdfMode}>
                     {"Gujarat (24)"}
                   </Text>
@@ -627,7 +630,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
         </View>
           
         <View className="bottom" pdfMode={pdfMode}>
-          <View className="w-85 flex" pdfMode={pdfMode}>
+          <View className="w-70 flex" pdfMode={pdfMode}>
               <Text className="left input bold" pdfMode={pdfMode}>
                   {`INVOICE AMOUNT (In words): `}
               </Text>
@@ -676,7 +679,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
             </View>
           </View>
           <View className="flex w-100" pdfMode={pdfMode}>
-            <View className="small mt-5 w-60" pdfMode={pdfMode}>
+            <View className="small mt-5 w-70" pdfMode={pdfMode}>
               <EditableInput
                 className="input bold w-100"
                 value={invoice.termLabel}
@@ -699,7 +702,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                 {`Reciever's signature`}
               </Text>
             </View>
-            <View className="mt-40 w-40" pdfMode={pdfMode}>
+            <View className="mt-40 w-30" pdfMode={pdfMode}>
               <View className={`signBox w-100`}  pdfMode={pdfMode}>
               <Text  className="w-100 center flexStart" pdfMode={pdfMode}>
                 {`For JayAmbe Engineering Works`}
