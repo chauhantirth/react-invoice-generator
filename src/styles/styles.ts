@@ -38,6 +38,10 @@ const styles: CSSClasses = {
     flex: 1,
   },
 
+  'ml-5':{
+    marginLeft:'5px',
+  },
+
   'ml-20':{
     marginLeft:'20px',
     flex:1,

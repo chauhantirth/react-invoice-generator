@@ -46,7 +46,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   const [ruppes,setRuppes] = useState<string>()
   const toWords = new ToWords();
 
-  const dateFormat = 'dd/mm/yyyy'
+  const dateFormat = 'dd, MMM yyyy'
   const invoiceDate = invoice.invoiceDate !== '' ? new Date(invoice.invoiceDate) : new Date()
   const invoiceDueDate =
     invoice.invoiceDueDate !== ''
@@ -648,10 +648,12 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                 <Text className="left input bold" pdfMode={pdfMode}>
                   {`Bank details:`}
                 </Text>
-              </div>
-              <Text className="w-100 pl-5" pdfMode={pdfMode}>
-                {process.env.REACT_APP_BANK_DETAIL}
-              </Text>
+                </div>
+                <div className='w-40'>
+                <Text className="w-100 pl-5" pdfMode={pdfMode}>
+                  {process.env.REACT_APP_BANK_DETAIL}
+                </Text>
+                </div>
             </View>
           </View>
           <View className="" pdfMode={pdfMode}>
@@ -660,22 +662,26 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                 <Text className="left input bold" pdfMode={pdfMode}>
                   {`A/c No:`}
                 </Text>
-              </div>
-              <Text className="w-100" pdfMode={pdfMode}>
-                {process.env.REACT_APP_ACC_WORD}
-              </Text>
+                </div>
+                <div className='w-40'>
+                <Text className="w-100 pl-5" pdfMode={pdfMode}>
+                  {process.env.REACT_APP_ACC_WORD}
+                </Text>
+                </div>
             </View>
           </View>
           <View className="" pdfMode={pdfMode}>
               <View className="w-70 flex" pdfMode={pdfMode}>
                 <div className="w-60">
-                <Text className="left input bold" pdfMode={pdfMode}>
-                {`IFSC code: `}
-                </Text>
-              </div>
-              <Text className="w-100" pdfMode={pdfMode}>
-              {process.env.REACT_APP_RTBG}
-              </Text>
+                  <Text className="left input bold" pdfMode={pdfMode}>
+                  {`IFSC code: `}
+                  </Text>
+                </div>
+                <div className='w-40'>
+                  <Text className="w-100 pl-5" pdfMode={pdfMode}>
+                  {process.env.REACT_APP_RTBG}
+                  </Text>
+                </div>
             </View>
           </View>
           <View className="flex w-100" pdfMode={pdfMode}>
