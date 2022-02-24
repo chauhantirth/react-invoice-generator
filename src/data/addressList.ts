@@ -96,8 +96,8 @@ const addresList=[
         clientGSTIN:"24AABCP3786G1ZD",
       },
       {
-        value:"CITEBOND MACHINES PVT. LTD.",
-        label:"CITEBOND MACHINES PVT. LTD.",
+        value:"LIFEBOND MACHINES PVT. LTD.",
+        label:"LIFEBOND MACHINES PVT. LTD.",
         clientAddress: "Block no. 101,137 Road No-11",
         clientAddress2: "Hojiwala Industrial Estate, Surat",
         clientCountry: "Navsari",

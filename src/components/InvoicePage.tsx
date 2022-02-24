@@ -3,7 +3,6 @@ import { Invoice, ProductLine } from '../data/types'
 import {ToWords} from 'to-words';
 import { initialInvoice, initialProductLine } from '../data/initialData'
 import EditableInput from './EditableInput'
-import EditableSelect from './EditableSelect'
 // import EditableTextarea from './EditableTextarea'
 import EditableCalendarInput from './EditableCalendarInput'
 import EditableAddress from './EditableAddress'
@@ -630,18 +629,24 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
         </View>
           
         <View className="bottom" pdfMode={pdfMode}>
-          <View className="w-70 flex" pdfMode={pdfMode}>
-              <Text className="left input bold" pdfMode={pdfMode}>
-                  {`INVOICE AMOUNT (In words): `}
-              </Text>
-            <EditableInput
-               className=""
-               value={invoice.rupeesTag}
-               onChange={(value) => handleChange('rupeesTag', value)}
-               pdfMode={pdfMode}
-            />
+          <View className="mt-5" pdfMode={pdfMode}>
+            <View className="w-70 flex" pdfMode={pdfMode}>
+                <div className='w-40'>
+                  <Text className="left input bold" pdfMode={pdfMode}>
+                      {`INVOICE AMOUNT (In words): `}
+                  </Text>
+                </div>
+                <div className='w-60'>
+                  <EditableInput
+                    className="input bold mb-2"
+                    value={invoice.rupeesTag}
+                    onChange={(value) => handleChange('rupeesTag', value)}
+                    pdfMode={pdfMode}
+                  />
+                </div>
+            </View>
           </View>
-        
+
           <View className="mt-5" pdfMode={pdfMode}>
               <View className="w-70 flex" pdfMode={pdfMode}>
                 <div className="w-60">
@@ -656,6 +661,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                 </div>
             </View>
           </View>
+
           <View className="" pdfMode={pdfMode}>
               <View className="w-70 flex" pdfMode={pdfMode}>
                 <div className="w-60">

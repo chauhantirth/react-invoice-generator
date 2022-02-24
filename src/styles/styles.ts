@@ -135,6 +135,10 @@ const styles: CSSClasses = {
     right:0,
   },
 
+  blockElem:{
+    display:'block'
+  },
+
   app:{
     margin: '10px auto 50px auto',
     width: '700px',
@@ -209,7 +213,7 @@ const styles: CSSClasses = {
   },
 
   bold: {
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
 
   center:{
@@ -326,7 +330,8 @@ const styles: CSSClasses = {
     color: 'black',
     background: 'transparent',
     borderRadius: '2px',
-    outline: '0'
+    outline: '0',
+    overflowX:'auto'
   }
 }
 
