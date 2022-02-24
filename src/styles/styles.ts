@@ -330,8 +330,7 @@ const styles: CSSClasses = {
     color: 'black',
     background: 'transparent',
     borderRadius: '2px',
-    outline: '0',
-    overflowX:'auto'
+    outline: '0'
   }
 }
 
