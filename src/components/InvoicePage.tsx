@@ -614,6 +614,21 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               </View>
               <View className="flex row" pdfMode={pdfMode}>
                 <View className="w-50 p-2" pdfMode={pdfMode}>
+                  <Text className="input" pdfMode={pdfMode}>
+                    {`Freight`}
+                  </Text>
+                </View>
+                <View className="w-50 p-2" pdfMode={pdfMode}>
+                  <EditableInput
+                    className="input right bold dark"
+                    value={invoice.freight}
+                    onChange={(value) => handleChange('freight', value)}
+                    pdfMode={pdfMode}
+                  />
+                </View>
+              </View>
+              <View className="flex row" pdfMode={pdfMode}>
+                <View className="w-50 p-2" pdfMode={pdfMode}>
                   <Text className="input bold" pdfMode={pdfMode}>
                     {invoice.totalLabel}
                   </Text>
@@ -630,20 +645,16 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
           
         <View className="bottom" pdfMode={pdfMode}>
           <View className="mt-5" pdfMode={pdfMode}>
-            <View className="w-70 flex" pdfMode={pdfMode}>
-                <div className='w-40'>
-                  <Text className="left input bold" pdfMode={pdfMode}>
-                      {`INVOICE AMOUNT (In words): `}
-                  </Text>
-                </div>
-                <div className='w-60'>
-                  <EditableInput
-                    className="input bold mb-2"
-                    value={invoice.rupeesTag}
-                    onChange={(value) => handleChange('rupeesTag', value)}
-                    pdfMode={pdfMode}
-                  />
-                </div>
+            <View className="w-70 flex mt-20" pdfMode={pdfMode}>
+              <Text className="left input bold w-40" pdfMode={pdfMode}>
+                  {`INVOICE AMOUNT (In words): `}
+              </Text>
+              <EditableInput
+                className="input bold mb-2 w-60"
+                value={invoice.rupeesTag}
+                onChange={(value) => handleChange('rupeesTag', value)}
+                pdfMode={pdfMode}
+              />
             </View>
           </View>
 
@@ -659,7 +670,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                   {process.env.REACT_APP_BANK_DETAIL}
                 </Text>
                 </div>
-            </View>
+              </View>
           </View>
 
           <View className="" pdfMode={pdfMode}>
@@ -674,7 +685,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                   {process.env.REACT_APP_ACC_WORD}
                 </Text>
                 </div>
-            </View>
+              </View>
           </View>
           <View className="" pdfMode={pdfMode}>
               <View className="w-70 flex" pdfMode={pdfMode}>

@@ -262,7 +262,7 @@ const styles: CSSClasses = {
   },
 
   bottom:{
-    bottom: '50px',
+    bottom: '30px',
     position:'absolute',
   },
 

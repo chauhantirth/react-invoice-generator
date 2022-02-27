@@ -57,6 +57,7 @@ export const initialInvoice: Invoice = {
   taxLabel1: 'CGST @9% :',
   taxLabel2: 'SGST @9% :',
   totalLabel: 'TOTAL:',
+  freight: '0.0',
   currency: 'INR',
   notesLabel: 'GSTIN:',
   GSTIN:'24AFFPC7505L1ZL',

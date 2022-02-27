@@ -45,7 +45,7 @@ export interface Invoice {
   taxLabel2:string
   totalLabel:string
   currency: string
-
+  freight:string
   notesLabel: string
   GSTIN:string
   notes: string
