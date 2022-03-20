@@ -134,7 +134,12 @@ const itemList=[
     {value:"HOOK ROD FOR GUIDE (863135-01)",label:"HOOK ROD FOR GUIDE (863135-01)",price:"5.50"},
     {value:"PIN FOR HOOK ROD (863215)",label:"PIN FOR HOOK ROD (863215)",price:"10.50"},
     {value:"DISTANCE COLLAR (865143)",label:"DISTANCE COLLAR (865143)",price:"3.50"},
-    // {value:"ITEM", label:"ITEM", price:'0.00'},
+    {value:"PIN FOR LINK (820616)", label:"PIN FOR LINK (820616)", price:'9.50'},
+    {value:"DIST PIECE(835033)", label:"DIST PIECE(835033)", price:'3.25'},
+    {value:"BELT TENSION SCREW (844071)", label:"BELT TENSION SCREW (844071)", price:'110.00'},
+    {value:"PUSH ROD 8Øx360MM L (821712)", label:"PUSH ROD 8Øx360MM L (821712)", price:'19.00'},
+    {value:"ITEM", label:"ITEM", price:'0.00'},
+    {value:"ITEM", label:"ITEM", price:'0.00'},
 ]
 
 export default itemList;

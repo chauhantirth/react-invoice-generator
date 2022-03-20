@@ -59,7 +59,6 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   const handleChange = (name: keyof Invoice, value: string) => {
     if (name !== 'productLines' && name!=='companyCountry' && name!=='addressDetail') {
       const newInvoice = { ...invoice }
-      console.log(value)
       newInvoice[name] = value
       setInvoice(newInvoice)
     }
@@ -382,7 +381,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               pdfMode={pdfMode}
             />
           </View>
-          <View className="w-18 " pdfMode={pdfMode}>
+          <View className="w-23 " pdfMode={pdfMode}>
             <EditableInput
               className="input bold"
               value={invoice.invoiceOrderNo}
@@ -390,7 +389,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
               pdfMode={pdfMode}
             />
           </View>
-          <View className="w-65 " pdfMode={pdfMode}>
+          <View className="w-60 " pdfMode={pdfMode}>
             <EditableInput
               className="input bold"
               value={invoice.productLineDescription}
@@ -442,7 +441,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                   {`${i+1}`}
                 </Text>
               </View>
-              <View className="w-18 " pdfMode={pdfMode}>
+              <View className="w-23 " pdfMode={pdfMode}>
                 <EditableInput
                     className="dark left"
                     value={productLine.orderNo}
@@ -450,7 +449,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
                     pdfMode={pdfMode}
                 />
               </View>
-              <View className="w-65 pb-5 " pdfMode={pdfMode}>
+              <View className="w-60 pb-5 " pdfMode={pdfMode}>
                 {/* <EditableTextarea
                   className="dark"
                   rows={2}

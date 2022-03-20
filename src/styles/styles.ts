@@ -51,6 +51,10 @@ const styles: CSSClasses = {
     width: '100%',
   },
 
+  'w-23' :{
+    width: '23%',
+  },
+
   'w-50': {
     width: '50%',
   },
@@ -330,7 +334,8 @@ const styles: CSSClasses = {
     color: 'black',
     background: 'transparent',
     borderRadius: '2px',
-    outline: '0'
+    outline: '0',
+    overflowX: 'auto',
   }
 }
 

@@ -2,7 +2,7 @@ import { ProductLine, Invoice } from './types'
 
 export const initialProductLine: ProductLine = {
   description: {value:"Item1", label:"Item 1", price:'0.00'},
-  quantity: '1',
+  quantity: '0',
   rate: '0.00',
   orderNo:'',
   hsn:'8448',
@@ -46,7 +46,7 @@ export const initialInvoice: Invoice = {
   productLines: [
     {
       description: {value:"Item1", label:"Item 1", price:'0.00'},
-      quantity: '1',
+      quantity: '0',
       rate: '0.00',
       orderNo:'',
       hsn:'8448',
