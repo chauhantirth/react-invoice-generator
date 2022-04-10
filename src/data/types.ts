@@ -17,7 +17,8 @@ export interface Invoice {
   companyAddress3:string
   companyCountry: object
   addressDetail:object
-  billTo: string
+  billTo: string,
+  clientAlias:string,
   clientAddress: string,
   clientAddress2: string,
   clientCountry: string,

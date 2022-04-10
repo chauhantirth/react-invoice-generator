@@ -17,6 +17,7 @@ export const initialInvoice: Invoice = {
   companyAddress3:'KABILPORE, NAVSARI-396424',
   companyCountry: {value:'India',label:'India'},
   billTo: 'BUYER:',
+  clientAlias:"SUNSHINE_ENG",
   addressDetail: {
     value:"SUNSHINE ENGINEERING",
     label:"SUNSHINE ENGINEERING",
@@ -24,6 +25,7 @@ export const initialInvoice: Invoice = {
     clientAddress2: "GIDC,Sachin",
     clientCountry: "Surat",
     clientGSTIN:"24AOFPK3573B12B",
+    alias:"SUNSHINE_ENG"
   },
   clientAddress: "Shed no:6122, Road no-61 ",
   clientAddress2: "GIDC,Sachin",

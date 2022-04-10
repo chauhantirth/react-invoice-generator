@@ -40,6 +40,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   const [subTotal, setSubTotal] = useState<number>()
   const [saleTax1, setSaleTax1] = useState<number>()
   const [saleTax2, setSaleTax2] = useState<number>()
+  const [freight, setFreight] = useState<number>()
   const [qty,setQty]=useState<number>(3)
   const [finalPrice, setFinalPrice]=useState<number>()
   const [ruppes,setRuppes] = useState<string>()
@@ -76,6 +77,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
     if (name === 'addressDetail') {
       const newInvoice = { ...invoice }
       newInvoice.addressDetail = value
+      newInvoice.clientAlias=value.alias
       newInvoice.clientAddress=value.clientAddress
       newInvoice.clientAddress2=value.clientAddress2
       newInvoice.clientGSTIN=value.clientGSTIN
@@ -151,6 +153,11 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
     setSubTotal(subTotal)
   }, [invoice.productLines])
 
+  useEffect(()=>{
+    let tmpFreight= Number(invoice.freight)
+    setFreight(tmpFreight)
+  },[invoice.freight])
+
   useEffect(() => {
     const match = invoice.taxLabel1.match(/@(\d+)/)
     const taxRate1 = match ? parseFloat(match[1]) : 0
@@ -168,12 +175,13 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   }, [subTotal,invoice.taxLabel2])
 
   useEffect(()=>{
-    if(subTotal && saleTax1 && saleTax2){
-      setFinalPrice(subTotal+saleTax1+saleTax2);
+    console.log("INSIDE");
+    if(subTotal && saleTax1 && saleTax2 && freight){
+      setFinalPrice(subTotal+saleTax1+saleTax2+freight);
     }
     // const tmp='ABC'
     // handleChange('rupeesTag',tmp );
-  },[subTotal,saleTax1,saleTax2])
+  },[subTotal,saleTax1,saleTax2,freight])
 
   useEffect(()=>{
     const tmp=(finalPrice)?toWords.convert(Math.round(finalPrice)).toUpperCase():'ZERO'
