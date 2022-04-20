@@ -40,7 +40,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   const [subTotal, setSubTotal] = useState<number>()
   const [saleTax1, setSaleTax1] = useState<number>()
   const [saleTax2, setSaleTax2] = useState<number>()
-  const [freight, setFreight] = useState<number>()
+  const [freight, setFreight] = useState<number>(0.0)
   const [qty,setQty]=useState<number>(3)
   const [finalPrice, setFinalPrice]=useState<number>()
   const [ruppes,setRuppes] = useState<string>()
@@ -176,8 +176,9 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
 
   useEffect(()=>{
     console.log("INSIDE");
-    if(subTotal && saleTax1 && saleTax2 && freight){
+    if(subTotal && saleTax1 && saleTax2 ){
       setFinalPrice(subTotal+saleTax1+saleTax2+freight);
+      console.log(finalPrice);
     }
     // const tmp='ABC'
     // handleChange('rupeesTag',tmp );
