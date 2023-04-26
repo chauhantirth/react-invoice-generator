@@ -139,7 +139,6 @@ const itemList=[
     {value:"BELT TENSION SCREW (844071)", label:"BELT TENSION SCREW (844071)", price:'126.50'},
     {value:"PUSH ROD 8Øx360MM L (821712)", label:"PUSH ROD 8Øx360MM L (821712)", price:'21.50'},
     {value:"ITEM", label:"ITEM", price:'0.00'},
-    {value:"ITEM", label:"ITEM", price:'0.00'},
 ]
 
 export default itemList;
