@@ -57,21 +57,28 @@ function UpdateItem() {
                 body: JSON.stringify({
                     label: newName,
                     value: newName,
-                    price: newPrice
+                    price: newPrice,
+                    item_id: selectedItem._id
                 })
         });
         setIsLoading(false);
 
         if (!response.ok) {
-            setError('Failed to retrieve the Items. Check your Internet Connection and try again.')
-            throw new Error('Failed to retrieve data from Database.');
+            setError('Failed to update the Item. Check your Internet Connection and try again.')
+            throw new Error('Failed to update data on Database.');
         }
 
         const resData = await response.json();
         if (resData) {
             if (resData.success === true) {
                 setError(null);
-                // setItemList(resData.container); Update in the main ItemList here
+                setApiMsg(resData.message);
+                localUpdate(selectedItem._id, {
+                    label: newName,
+                    value: newName,
+                    price: newPrice
+                });
+                setSelectedItem({_id: selectedItem._id, label: newName, value: newName, price: newPrice});
             } else {
                 setError(resData.errorMessage);
             }
@@ -84,10 +91,21 @@ function UpdateItem() {
         setSelectedItem(selectedOption);
     };
 
+    const localUpdate = (id, updatedObj) => {
+        setItemList((prevItemList) => prevItemList.map((item) => item._id === id ? { ...item, ...updatedObj} : item))
+    }
+
     const handleUpdate = async (ev) => {
         ev.preventDefault();
         setApiMsg(null);
         setError(null);
+
+        console.log("Clicked.")
+        
+        if (newName == selectedItem.label && newPrice == selectedItem.price) {
+            setError("Please make changes to the values before Updating.");
+            return;
+        }
 
         if(newName.trim() != "" && newPrice.trim() != "") {
             console.log("Calling API.")
@@ -96,6 +114,7 @@ function UpdateItem() {
             if (newName.trim() == "") {
                 setError("Please enter a valid Item Name.");
                 setNewName("");
+                return;
             }
             if (newPrice.trim() == "") {
                 setError("Please enter a valid Item Price.");
@@ -163,14 +182,17 @@ function UpdateItem() {
                                 </input>
 
                                 {error ? (<span>{error}</span>):(<></>)}
-                                <button className="submit-button" onClick={(ev) => {handleUpdate(ev)}} disabled={isLoading}>
-                                    {isLoading ? (
-                                    <>
-                                        <div className="spinner"></div>
-                                    </>
-                                    ) : (
-                                        'Update'
-                                    )}
+                                <button 
+                                    className="submit-button" 
+                                    onClick={(ev) => {handleUpdate(ev)}} 
+                                    disabled={isLoading}>
+                                        {isLoading ? (
+                                        <>
+                                            <div className="spinner"></div>
+                                        </>
+                                        ) : (
+                                            'Update'
+                                        )}
                                 </button>
                                 {apiMsg ? (<span>{apiMsg}</span>):(<></>)}
                             </div>
