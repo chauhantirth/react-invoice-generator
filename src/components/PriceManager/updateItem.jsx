@@ -117,7 +117,7 @@ function UpdateItem() {
                             options={itemList}
                             placeholder="Select an item..."
                             isSearchable={true}
-                            getOptionLabel={(option) => `${option.label} - ${option.price}`}
+                            getOptionLabel={(option) => `${option.label} - ${option.price}₹`}
                             getOptionValue={(option) => option._id}
                         />
                     </div>) : (<></>)}
