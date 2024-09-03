@@ -49,7 +49,7 @@ function AddItem() {
     const handleUpload = async (ev) => {
         ev.preventDefault();
         setApiMsg(null);
-        setApiMsg(null);
+        setApiData(null);
         setError(null);
 
         if(itemName.trim() != "" && itemPrice.trim() != "") {
