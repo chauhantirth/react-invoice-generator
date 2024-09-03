@@ -15,8 +15,6 @@ function PriceManager(){
     const OpenSidebar = () => {
       setOpenSidebarToggle(!openSidebarToggle)
     }
-
-    console.log(currentHome)
     
     return(
         <div className='grid-container'>

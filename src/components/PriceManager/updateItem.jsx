@@ -12,6 +12,8 @@ function UpdateItem() {
 
     const [fetchError, setFetchError] = useState(null);
     const [error, setError] = useState(null);
+
+    const [apiMsg, setApiMsg] = useState(null);
     
     const fetchItems = async () => {
         setFetchingItems(true);
@@ -82,11 +84,39 @@ function UpdateItem() {
         setSelectedItem(selectedOption);
     };
 
+    const handleUpdate = async (ev) => {
+        ev.preventDefault();
+        setApiMsg(null);
+        setError(null);
+
+        if(newName.trim() != "" && newPrice.trim() != "") {
+            console.log("Calling API.")
+            await updateItems();
+        } else {
+            if (newName.trim() == "") {
+                setError("Please enter a valid Item Name.");
+                setNewName("");
+            }
+            if (newPrice.trim() == "") {
+                setError("Please enter a valid Item Price.");
+                setNewPrice("");
+            }
+        }
+        console.log('newPrice: '+newPrice);
+        console.log('newName: '+newName);
+        console.log('Error: '+error);
+    }
+
     useEffect(() => {
         fetchItems();
     }, []);
 
-    console.log(itemList);
+    useEffect(() => {
+        if(selectedItem !== null) {
+            setNewName(selectedItem.label)
+            setNewPrice(selectedItem.price)
+        }
+    }, [selectedItem]);
 
     return (
         <main className='main-container'>
@@ -124,17 +154,25 @@ function UpdateItem() {
 
                     {selectedItem ? (
                         <>
-                            <div style={{ marginTop: '20px' }}>
-                                <h4>Selected Item:</h4>
-                                <p><strong>Label:</strong> {selectedItem.label}</p>
-                                <p><strong>Price:</strong> {selectedItem.price}</p>
-                            </div>
                             <div className="form-container">
-                                <input type="text" className="input-field" placeholder="Item Name.">
+                                <input type="text" className="input-field"
+                                    value={newName} onChange={(ev) => {setNewName(ev.target.value)}}>
                                 </input>
-                                <input type="text" className="input-field" placeholder="Item Price.">
+                                <input type="text" className="input-field"
+                                    value={newPrice} onChange={(ev) => {setNewPrice(ev.target.value)}}>
                                 </input>
-                                <button className="submit-button">Update</button>
+
+                                {error ? (<span>{error}</span>):(<></>)}
+                                <button className="submit-button" onClick={(ev) => {handleUpdate(ev)}} disabled={isLoading}>
+                                    {isLoading ? (
+                                    <>
+                                        <div className="spinner"></div>
+                                    </>
+                                    ) : (
+                                        'Update'
+                                    )}
+                                </button>
+                                {apiMsg ? (<span>{apiMsg}</span>):(<></>)}
                             </div>
                         </>) : (<></>)}
 
