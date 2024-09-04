@@ -18,7 +18,7 @@ function Header({OpenSidebar}) {
                     </svg>
                 </span>
             </div>
-            <div className="header-center">
+            <div>
                 <h3>Dashboard</h3>
             </div>
             <div className='header-left'>
