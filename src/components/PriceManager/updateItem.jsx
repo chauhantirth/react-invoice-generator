@@ -152,7 +152,7 @@ function UpdateItem() {
                                 <center><div className="spinner"></div></center>
                             </>
                         ) : (<>
-                                <center><h3>Edit Details: </h3></center>
+                                <center><h3>Select Item:</h3></center>
                             </>
                             )}
                     </div>
@@ -160,7 +160,7 @@ function UpdateItem() {
                     {fetchError ? (<h4 className="center" style={{ color: 'red' }}>{fetchError}</h4>) : (<></>)}
 
                     {itemList ? (
-                        <div style={{ width: '300px', margin: '50px auto' }}>
+                        <div style={{ width: '300px', margin: '10px auto 20px auto' }}>
                         <Select
                             value={selectedItem}
                             onChange={handleSelectedItemChange}
@@ -169,6 +169,7 @@ function UpdateItem() {
                             isSearchable={true}
                             getOptionLabel={(option) => `${option.label} - ${option.price}₹`}
                             getOptionValue={(option) => option._id}
+                            className="dark"
                         />
                     </div>) : (<></>)}
 
