@@ -105,8 +105,6 @@ function UpdateItem() {
         setApiMsg(null);
         setError(null);
 
-        console.log("Clicked.")
-        
         if (newName == selectedItem.label && newPrice == selectedItem.price) {
             setError("Please make changes to the values before Updating.");
             return;
@@ -126,9 +124,6 @@ function UpdateItem() {
                 setNewPrice("");
             }
         }
-        console.log('newPrice: '+newPrice);
-        console.log('newName: '+newName);
-        console.log('Error: '+error);
     }
 
     useEffect(() => {
@@ -161,7 +156,9 @@ function UpdateItem() {
                             </>
                             )}
                     </div>
-                    {fetchError ? (<center><span>{fetchError}</span></center>) : (<></>)}
+
+                    {fetchError ? (<h4 className="center" style={{ color: 'red' }}>{fetchError}</h4>) : (<></>)}
+
                     {itemList ? (
                         <div style={{ width: '300px', margin: '50px auto' }}>
                         <Select
@@ -185,7 +182,8 @@ function UpdateItem() {
                                     value={newPrice} onChange={(ev) => {setNewPrice(ev.target.value)}}>
                                 </input>
 
-                                {error ? (<span>{error}</span>):(<></>)}
+                                {error ? (<h4 className="center" style={{ color: 'red' }}>{error}</h4>):(<></>)}
+
                                 <button 
                                     className="submit-button" 
                                     onClick={(ev) => {handleUpdate(ev)}} 
@@ -198,7 +196,7 @@ function UpdateItem() {
                                             'Update'
                                         )}
                                 </button>
-                                {apiMsg ? (<span>{apiMsg}</span>):(<></>)}
+                                {apiMsg ? (<h4 className="center" style={{ color: 'green' }}>{apiMsg}</h4>):(<></>)}
                             </div>
                         </>) : (<></>)}
 
