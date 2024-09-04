@@ -29,6 +29,7 @@ Font.register({
 interface Props {
   data?: Invoice
   pdfMode?: boolean
+  setTopError?: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 export interface SelectOption {
   value: string
@@ -42,7 +43,7 @@ interface Item {
   price: string;
 }
 
-const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
+const InvoicePage: FC<Props> = ({ data, pdfMode, setTopError}) => {
   const [invoice, setInvoice] = useState<Invoice>(data ? { ...data } : { ...initialInvoice })
   const [subTotal, setSubTotal] = useState<number>()
   const [saleTax1, setSaleTax1] = useState<number>()
@@ -151,34 +152,52 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   }
 
   const fetchItemsList = async () => {
-    setFetchingItems(true);
-    const response = await fetch(
-        "http://192.168.0.157:4000/api/getItem", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Host': '192.168.0.157'
-            }, 
-    });
-    setFetchingItems(false);
-
-    if (!response.ok) {
-        setFetchError('Failed to retrieve the Items. Check your Internet Connection and try again.')
-        throw new Error('Failed to retrieve data from Database.');
-    }
-
-    const resData = await response.json();
-    if (resData) {
-        if (resData.success === true) {
-            setFetchError("");
-            setItemList(resData.container[0]);
-        } else {
-            setFetchError(resData.errorMessage);
+    try {
+      if(setTopError) {
+        setTopError("");
+      }
+      setFetchingItems(true);
+      const response = await fetch(
+          "http://192.168.0.157:4000/api/getItem", {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Host': '192.168.0.157'
+              }, 
+      });
+      setFetchingItems(false);
+  
+      if (!response.ok) {
+        if(setTopError) {
+          setTopError('Failed to retrieve the Items. Check your Internet Connection and try again.')
+          throw new Error('Failed to retrieve data from Database.');
         }
-    } else {
-        setFetchError('An Error occured parsing the server response, Try again later.')
-    }
-  };
+      }
+  
+      const resData = await response.json();
+      if (resData) {
+          if (resData.success === true) {
+            if(setTopError) {
+              setTopError("");
+              setItemList(resData.container[0]);
+            }
+          } else {
+            if(setTopError) {
+              setTopError(resData.errorMessage);
+            }
+          }
+      } else {
+        if(setTopError) {
+          setTopError('An Error occured parsing the server response, Try again later.')
+        }
+      }
+    } catch (error) {
+      setFetchingItems(false);
+      if(setTopError) {
+        setTopError('Failed to retrieve the Items. Check your Internet Connection and try again.')
+      }
+  }
+};
 
   useEffect(() => {
     let subTotal = 0
