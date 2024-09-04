@@ -10,7 +10,7 @@ function Sidebar({openSidebarToggle, OpenSidebar, setCurrentHome}) {
         <div className='sidebar-title'>
             <div className='sidebar-brand'>
                 {/* <BsCart3  className='icon_header'/> SHOP */}
-                <span>JAY AMBE</span>
+                <span style={{color: "white"}}>JAY AMBE</span>
             </div>
             {/* <span className='icon close_icon' onClick={OpenSidebar}>X</span> */}
             <span className='icon close_icon' onClick={OpenSidebar}>

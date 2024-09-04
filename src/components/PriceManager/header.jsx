@@ -19,7 +19,7 @@ function Header({OpenSidebar}) {
                 </span>
             </div>
             <div>
-                <h3>Dashboard</h3>
+                <h3 style={{color: "white"}}>Dashboard</h3>
             </div>
             <div className='header-left'>
                 {/* <BsSearch  className='icon'/> */}
