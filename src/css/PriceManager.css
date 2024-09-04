@@ -150,7 +150,8 @@ body {
   }
   
   .card:first-child {
-    background-color: #2962ff;
+    /* background-color: #2962ff; */
+    background-color: #001a31;
   }
   
   .card:nth-child(2) {
@@ -248,6 +249,7 @@ body {
     font-size: 16px;
     transition: border-color 0.3s ease;
     outline: none;
+    color: white;
 }
 
 .input-field:focus {
