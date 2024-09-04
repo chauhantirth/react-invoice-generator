@@ -18,6 +18,9 @@ function Header({OpenSidebar}) {
                     </svg>
                 </span>
             </div>
+            <div className="header-center">
+                <h3>Dashboard</h3>
+            </div>
             <div className='header-left'>
                 {/* <BsSearch  className='icon'/> */}
             </div>
