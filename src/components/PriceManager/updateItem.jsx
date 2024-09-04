@@ -16,32 +16,37 @@ function UpdateItem() {
     const [apiMsg, setApiMsg] = useState(null);
     
     const fetchItems = async () => {
-        setFetchingItems(true);
-        const response = await fetch(
-            "http://192.168.0.157:4000/api/getItem", {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Host': '192.168.0.157'
-                }, 
-        });
-        setFetchingItems(false);
+        try {
+            setFetchingItems(true);
+            const response = await fetch(
+                "http://192.168.0.157:4000/api/getItem", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Host': '192.168.0.157'
+                    }, 
+            });
+            setFetchingItems(false);
 
-        if (!response.ok) {
-            setFetchError('Failed to retrieve the Items. Check your Internet Connection and try again.')
-            throw new Error('Failed to retrieve data from Database.');
-        }
-
-        const resData = await response.json();
-        if (resData) {
-            if (resData.success === true) {
-                setFetchError(null);
-                setItemList(resData.container[0]);
-            } else {
-                setFetchError(resData.errorMessage);
+            if (!response.ok) {
+                setFetchError('Failed to retrieve the Items. Check your Internet Connection and try again.')
+                throw new Error('Failed to retrieve data from Database.');
             }
-        } else {
-            setFetchError('An Error occured parsing the server response, Try again later.')
+
+            const resData = await response.json();
+            if (resData) {
+                if (resData.success === true) {
+                    setFetchError(null);
+                    setItemList(resData.container[0]);
+                } else {
+                    setFetchError(resData.errorMessage);
+                }
+            } else {
+                setFetchError('An Error occured parsing the server response, Try again later.')
+            }
+        } catch (error) {
+            setFetchingItems(false);
+            setFetchError('Failed to retrieve the Items. Check your Internet Connection and try again.');
         }
     };
 
@@ -153,11 +158,10 @@ function UpdateItem() {
                             </>
                         ) : (<>
                                 <center><h3>Edit Details: </h3></center>
-                                {fetchError ? (<span>fetchError</span>) : (<></>)}
                             </>
                             )}
                     </div>
-                    
+                    {fetchError ? (<center><span>{fetchError}</span></center>) : (<></>)}
                     {itemList ? (
                         <div style={{ width: '300px', margin: '50px auto' }}>
                         <Select

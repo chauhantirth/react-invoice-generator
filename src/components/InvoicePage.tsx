@@ -8,7 +8,7 @@ import EditableCalendarInput from './EditableCalendarInput'
 import EditableAddress from './EditableAddress'
 import EditableDesc from './EditableDesc'
 // import countryList from '../data/countryList'
-import itemList from '../data/itemList'
+// import itemList from '../data/itemList'
 import addressList from '../data/addressList'
 import Document from './Document'
 import Page from './Page'
@@ -35,6 +35,13 @@ export interface SelectOption {
   label: string
 }
 
+interface Item {
+  _id: string;
+  value: string;
+  label: string;
+  price: string;
+}
+
 const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   const [invoice, setInvoice] = useState<Invoice>(data ? { ...data } : { ...initialInvoice })
   const [subTotal, setSubTotal] = useState<number>()
@@ -45,6 +52,11 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
   const [finalPrice, setFinalPrice]=useState<number>()
   const [ruppes,setRuppes] = useState<string>()
   const toWords = new ToWords();
+
+  const [fetchingItems, setFetchingItems] = useState<boolean>(false);
+  const [fetchError, setFetchError] = useState<string>();
+  const [itemList, setItemList] = useState<Item[]>([]);
+
 
   const dateFormat = 'dd, MMM yyyy'
   const invoiceDate = invoice.invoiceDate !== '' ? new Date(invoice.invoiceDate) : new Date()
@@ -138,6 +150,36 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
     return amount.toFixed(2)
   }
 
+  const fetchItemsList = async () => {
+    setFetchingItems(true);
+    const response = await fetch(
+        "http://192.168.0.157:4000/api/getItem", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Host': '192.168.0.157'
+            }, 
+    });
+    setFetchingItems(false);
+
+    if (!response.ok) {
+        setFetchError('Failed to retrieve the Items. Check your Internet Connection and try again.')
+        throw new Error('Failed to retrieve data from Database.');
+    }
+
+    const resData = await response.json();
+    if (resData) {
+        if (resData.success === true) {
+            setFetchError("");
+            setItemList(resData.container[0]);
+        } else {
+            setFetchError(resData.errorMessage);
+        }
+    } else {
+        setFetchError('An Error occured parsing the server response, Try again later.')
+    }
+  };
+
   useEffect(() => {
     let subTotal = 0
     let totQuantity=0
@@ -188,6 +230,10 @@ const InvoicePage: FC<Props> = ({ data, pdfMode }) => {
     const tmp=(finalPrice)?toWords.convert(Math.round(finalPrice)).toUpperCase():'ZERO'
     handleChange('rupeesTag',`${tmp} ONLY`)
   },[finalPrice])
+
+  useEffect(() => {
+    fetchItemsList();
+  }, [])
 
   return (
     <Document pdfMode={pdfMode}>
