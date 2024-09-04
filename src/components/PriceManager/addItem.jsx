@@ -53,12 +53,12 @@ function AddItem() {
         setError(null);
 
         if(itemName.trim() != "" && itemPrice.trim() != "") {
-            console.log("Calling API.")
             await uploadItem();
         } else {
             if (itemName.trim() == "") {
                 setError("Please enter a valid Item Name.");
                 setItemName("");
+                return;
             }
             if (itemPrice.trim() == "") {
                 setError("Please enter a valid Item Price.");
@@ -98,7 +98,9 @@ function AddItem() {
                             onChange={(ev) => {setItemPrice(ev.target.value)}}
                         >
                         </input>
-                        {error ? (<span>{error}</span>):(<></>)}
+
+                        {error ? (<h4 className="center" style={{ color: 'red' }}>{error}</h4>):(<></>)}
+
                         <button className="submit-button" onClick={(ev) => {handleUpload(ev)}} disabled={isLoading}>
                             {isLoading ? (
                             <>
@@ -108,7 +110,7 @@ function AddItem() {
                                 'Add'
                             )}
                         </button>
-                        {apiMsg ? (<span>{apiMsg}</span>):(<></>)}
+                        {apiMsg ? (<h4 className="center" style={{ color: 'green' }}>{apiMsg}</h4>):(<></>)}
                     </div>
                 </div>
                 {/* <div className='card'>
