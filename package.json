@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "private": true,
   "engines": {
-    "node": ">=14.15.0 < 18.18.0"
+    "node": ">=14.15.0 < 16.20.0"
   },
   "homepage": "https://frozen-meadow-72919.herokuapp.com/",
   "dependencies": {
