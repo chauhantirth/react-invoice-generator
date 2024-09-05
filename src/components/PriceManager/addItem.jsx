@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import endpoints from '../../constants/constant';
 
 function AddItem() {
     const [itemName, setItemName] = useState("");
@@ -11,7 +12,7 @@ function AddItem() {
     const uploadItem = async () => {
         setIsLoading(true);
         const response = await fetch(
-            "http://192.168.0.157:4000/api/addItem", {
+            endpoints.prod.addItem, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

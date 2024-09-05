@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from 'react-select';
+import endpoints from '../../constants/constant';
 
 function UpdateItem() {
     const [itemList, setItemList] = useState(null);
@@ -19,7 +20,7 @@ function UpdateItem() {
         try {
             setFetchingItems(true);
             const response = await fetch(
-                "http://192.168.0.157:4000/api/getItem", {
+                endpoints.prod.getItem, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ function UpdateItem() {
     const updateItems = async () => {
         setIsLoading(true);
         const response = await fetch(
-            "http://192.168.0.157:4000/api/updateItem", {
+            endpoints.prod.updateItem, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
