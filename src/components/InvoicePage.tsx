@@ -17,6 +17,7 @@ import Text from './Text'
 import { Font } from '@react-pdf/renderer'
 import Download from './DownloadPDF'
 import format from 'date-fns/format'
+import endpoints from '../constants/constant';
 
 Font.register({
   family: 'Nunito',
@@ -158,7 +159,7 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, setTopError}) => {
       }
       setFetchingItems(true);
       const response = await fetch(
-          "http://192.168.0.157:4000/api/getItem", {
+          endpoints.prod.getItem, {
               method: 'GET',
               headers: {
                   'Content-Type': 'application/json',
