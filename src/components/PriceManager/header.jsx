@@ -2,8 +2,6 @@ import React from "react";
 // import 
 //     {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify}
 //     from 'react-icons/bs';
-import IconComponent from "./IconCom";
-
 
 function Header({OpenSidebar}) {
     return (
