@@ -24,7 +24,6 @@ function UpdateItem() {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Host': '192.168.0.157'
                     }, 
             });
             setFetchingItems(false);
@@ -58,7 +57,6 @@ function UpdateItem() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Host': '192.168.0.157'
                 },
                 body: JSON.stringify({
                     label: newName,

@@ -163,7 +163,6 @@ const InvoicePage: FC<Props> = ({ data, pdfMode, setTopError}) => {
               method: 'GET',
               headers: {
                   'Content-Type': 'application/json',
-                  'Host': '192.168.0.157'
               }, 
       });
       setFetchingItems(false);
