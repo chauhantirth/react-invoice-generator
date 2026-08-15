@@ -2,8 +2,8 @@ const addresList=[
     {
         value:"SUNSHINE ENGINEERING",
         label:"SUNSHINE ENGINEERING",
-        clientAddress: "Shed No:6122, Road No-61 ",
-        clientAddress2: "GIDC,Sachin",
+        clientAddress: "PLOT NO: 7/103, ROAD NO: 7",
+        clientAddress2: "GIDC, Sachin, Surat, 394230",
         clientCountry: "Surat",
         clientGSTIN:"24AOFPK3573B1ZB",
         alias: "SUNSHINE_ENG"
@@ -65,8 +65,8 @@ const addresList=[
       {
         value:"D.K. ENGINEERING",
         label:"D.K. ENGINEERING",
-        clientAddress: "Shed No-6123, Road No-61",
-        clientAddress2: "GIDC Sachin, Surat",
+        clientAddress: "PLOT NO: 7/103/B, ROAD NO: 7",
+        clientAddress2: "CHORASI, Sachin, Surat, 394230",
         clientCountry: "Surat",
         clientGSTIN:"24ALRPK9681P1ZZ",
         alias:"D_K_ENG"
